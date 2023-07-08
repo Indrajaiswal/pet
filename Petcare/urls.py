@@ -17,16 +17,26 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app1 import views
-
+from aap1.viwes import *
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.Homepage,name='home'),
+    path('',views.Home,name='Home'),
     path('register/',views.Registerpage,name='register'),
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.LogoutPage,name='logout'),
-    path('dashboard/',views.Dashboard,name='dashboard'),
+    # path('dashboard/',views.Dashboard,name='dashboard'),
+    path("about",views.About,name='about'),
+    path("services",views.Services,name='services'),
+    path("insurance",views.Insurance,name='insurance'),
+    path("hostel",views.Hostel,name='hostel'),
+    path("food",views.Food,name='food'),
+    path("calculator",views.Calculator,name='calculator'),
+    path("landing",views.Landing,name='landing'),
+    path("booking",views.Booking,name='booking'),
+    path('register/' , RegisterAPI.as_view()),
+
 
 ]
 

@@ -2,11 +2,16 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from rest_framework.viwes import APIView
+from rest_framework.response import Response
+
+from .serializer import *
+
+
 @login_required(login_url='login')
 
-def Homepage(request):
-    return render (request,'home.html')  
+def Home(request):
+    return render (request,'home1.html')  
 
 def LoginPage(request):
     if request.method=='POST':
@@ -15,7 +20,7 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('dashboard')
+            return redirect('landing')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
 
@@ -42,19 +47,61 @@ def Registerpage(request):
 
 def LogoutPage(request):
     logout(request)
-    return redirect('home')
+    return redirect('landing')
     
 def Dashboard(request):
     return render (request,'dashboard.html')  
 
-def about(request):
+def About(request):
     return render (request,'about.html')
 
-def services(request):
+def Services(request):
     return render (request,'services.html')
 
-def insurance(request):
+def Insurance(request):
     return render (request,'insurance.html')
+
+def Hostel(request):
+    return render (request,'hostel.html')
+
+def Food(request):
+    return render (request,'food.html')
+
+def Calculator(request):
+    return render (request,'calculator.html')
+
+def Landing(request):
+    return render (request,'landing.html')
+
+def Booking(request):
+    return render (request,'booking.html')
+
+
+class RegisterAPI(APIView):
+    def post(self , request):
+        try:
+            data = request.data
+            serializer = UserSerializer(data = data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({
+                    'status' : 200,
+                    'messange' : 'registration successfully check email',
+                    'data' : serializer.data,
+
+                })
+            
+            return Response({
+                'status' : 400,
+                    'messange' : 'something went wrong',
+                    'data' : serializer.errors
+
+            })
+        
+        except Exception as e:
+            print(e)
+
+            
 
 
 

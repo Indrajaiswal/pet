@@ -10,12 +10,6 @@
     margin: 0%;
     font-family: 'Playfair Display',serif;
 }
-body {
-    background-image: url('/static/image/Hos1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
 
 .flex{
     display: flex;
@@ -28,10 +22,10 @@ h1,h2,h3,h4,h5,h6{
     padding: 8px 0;
 }
 
-/* img{
+img{
     width: 100%;
     display: block;
-} */
+}
 
 @media(max-width: 500px){
     body{
@@ -39,12 +33,13 @@ h1,h2,h3,h4,h5,h6{
     }
 }
 
-/* .header{
-    background-image: url('/static/image/Hos1.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-} */
+.header{
+    background-image: url('/static/image/Hos1.jpg');    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+}
 
 .head-top{
     display: flex;

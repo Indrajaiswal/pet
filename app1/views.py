@@ -2,12 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from rest_framework.viwes import APIView
-from rest_framework.response import Response
-
-from .serializer import *
-
-
+# Create your views here.
 @login_required(login_url='login')
 
 def Home(request):
@@ -39,7 +34,7 @@ def Registerpage(request):
 
             my_user=User.objects.create_user(uname,email,pass1)
             my_user.save()
-            return redirect('login')
+            return redirect('landing')
         
 
 
@@ -72,36 +67,4 @@ def Calculator(request):
 
 def Landing(request):
     return render (request,'landing.html')
-
-def Booking(request):
-    return render (request,'booking.html')
-
-
-class RegisterAPI(APIView):
-    def post(self , request):
-        try:
-            data = request.data
-            serializer = UserSerializer(data = data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response({
-                    'status' : 200,
-                    'messange' : 'registration successfully check email',
-                    'data' : serializer.data,
-
-                })
-            
-            return Response({
-                'status' : 400,
-                    'messange' : 'something went wrong',
-                    'data' : serializer.errors
-
-            })
-        
-        except Exception as e:
-            print(e)
-
-            
-
-
 

@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app1 import views
-from aap1.viwes import *
 
 
 urlpatterns = [
@@ -34,9 +33,6 @@ urlpatterns = [
     path("food",views.Food,name='food'),
     path("calculator",views.Calculator,name='calculator'),
     path("landing",views.Landing,name='landing'),
-    path("booking",views.Booking,name='booking'),
-    path('register/' , RegisterAPI.as_view()),
-
 
 ]
 

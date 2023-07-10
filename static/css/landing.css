@@ -206,7 +206,7 @@ body span {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-image: url('/static/image/back.png');
+  background-image: url('/static/image/bg.jpg');
   background-position: center;
   background-size: cover;
   position: relative;
